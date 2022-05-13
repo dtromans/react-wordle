@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Wordle from "./components/Wordle";
 
 function App() {
 	const [solution, setSolution] = useState(null);
@@ -11,17 +12,18 @@ function App() {
 				const randomSolution = json[Math.floor(Math.random() * json.length)]
 				setSolution(randomSolution.word)
 			})
+			.catch(error => console.log('fetch error: ', error))
 	}, [setSolution])
 
 	return (
 	<div className="App">
 		<h1>Wordle (Lingo)</h1>
-		{solution && <div>Solution is: {solution}</div>}
+		{solution && <Wordle solution={solution} />}
 	</div>
 	);
 }
 
-export default App
+export default App;
 
 /* 
 
